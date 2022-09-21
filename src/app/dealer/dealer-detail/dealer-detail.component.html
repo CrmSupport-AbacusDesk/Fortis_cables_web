@@ -21,7 +21,8 @@
                         
                         <div class="detail-info pr0">
                             <div class="img-box">
-                                <div class="name-box point-sec" (click)="balanceModel(getData.id)">
+                                <!-- (click)="balanceModel(getData.id)" -->
+                                <div class="name-box point-sec">
                                     <div class="points ">
                                         <a>{{total_wallet_points}}</a>
                                         <h4>Balance Points</h4>
@@ -204,8 +205,8 @@
                             <div class="top-heading">
                                 <h2>Manual Coupon Code Permission ?</h2>
                                 <mat-radio-group aria-label="Select an option" name="manual_permission" [(ngModel)] = "getData.manual_permission" required #manual_permission="ngModel">
-                                    <mat-radio-button [value]="1" [checked]="getData.manual_permission == '1'" class="pr70">Yes</mat-radio-button>
-                                    <mat-radio-button [checked]="getData.manual_permission == '0'" [value]="0">No</mat-radio-button>
+                                    <mat-radio-button [value]="1" [checked]="getData.manual_permission == '1'" class="pr70"  style="color: #fff;">Yes</mat-radio-button>
+                                    <mat-radio-button [checked]="getData.manual_permission == '0'" [value]="0"  style="color: #fff;">No</mat-radio-button>
                                 </mat-radio-group>
                             </div>
                             <div class="row option-field pl0" *ngIf="getData.manual_permission == '1' ">

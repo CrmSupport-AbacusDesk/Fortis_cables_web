@@ -21,7 +21,8 @@
                         
                         <div class="detail-info pr0">
                             <div class="img-box">
-                                <div class="name-box point-sec" (click)="balanceModel(getData.id)">
+                                <div class="name-box point-sec" >
+                                    <!-- (click)="balanceModel(getData.id)" -->
                                     <div class="points ">
                                         <a>{{total_wallet_points}}</a>
                                         <h4>Balance Points</h4>
@@ -188,6 +189,40 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="sprate-box gift-offer mt15">
+                    <div class="full-offer">
+                        <div class="top-heading">
+                            <h2>BANK DETAIL</h2>
+                        </div>
+                        <div class="detail-info pl0 pr0">
+                            <div class="basic-details">
+                                <div class="profile-info">
+                                    <ul>
+                                        <li>
+                                            <p>Account Holder Name</p>
+                                            <span>{{getData.account_holder_name!='' ? getData.account_holder_name : 'N/A'}}</span>
+                                        </li>
+                                        <li>
+                                            <p>Bank Name</p>
+                                            <span>{{getData.bank_name!='' ? getData.bank_name : 'N/A'}}</span>
+                                        </li>
+                                        
+                                        <li>
+                                            <p>Account Number</p>
+                                            <span>{{getData.account_no ? getData.account_no : 'N/A'}}</span>
+                                        </li>
+
+                                        <li>
+                                            <p>IFSC Code</p>
+                                            <span>{{getData.ifsc_code ? getData.ifsc_code : 'N/A'}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col s6">
                 <div class="sprate-box gift-offer">
@@ -258,6 +293,8 @@
                 </div>
             </div>
            
+      
+
             <div class="row" >
                 <div class="used-code">
                     <div class="tab-header">
