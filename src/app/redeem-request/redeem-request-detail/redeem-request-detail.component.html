@@ -109,16 +109,16 @@
                       </li>
 
                       <li
-                        [ngClass]="{'check': (getData.receive_status == 'Shipped' || getData.receive_status == 'Received') }">
+                        [ngClass]="{'check': (getData.receive_status == 'Shipped' || getData.receive_status == 'Transfered'  || getData.receive_status == 'Received') }">
                         <div class="traking-list">
                           <span>
                             <span>3</span>
                           </span>
                         </div>
 
-                        <div class="traking-con" *ngIf="getData.redeem_type != 'gift'">
+                        <div class="traking-con" *ngIf="getData.redeem_type == 'Cash'">
                           <p>Transfer</p>
-                          <p *ngIf="getData.shipped_date != '0000-00-00'">{{getData.shipped_date | date:'d MMM y'}}</p>
+                          <p *ngIf="getData.estimated_date != '0000-00-00'">{{getData.estimated_date | date : 'dd MMM yyyy'}}</p>
                         </div>
                         <div class="traking-con" *ngIf="getData.redeem_type == 'gift'">
                           <p>Shipped</p>
@@ -132,7 +132,7 @@
                         </div>
                         <div class="traking-con">
                           <p>Received</p>
-                          <p *ngIf="getData.received_date != '0000-00-00'">{{getData.received_date | date:'d MMM y h:mm a'}}
+                          <p *ngIf="getData.received_date != '0000-00-00'">{{getData.received_date | date:'d MMM y'}}
                           </p>
                         </div>
                       </li>
@@ -178,33 +178,6 @@
           </div>
         </div>
 
-        <div class="sprate-box gift-offer ">
-          <div class="full-offer">
-            <div class="top-heading">
-              <h2>DOCUMENT DETAIL</h2>
-            </div>
-            <div class="detail-info pl0 pr0">
-              <div class="img-box">
-                <img [src]="uploadUrl+getData.document_image" (click)="openDialog(getData.document_image,'document')">
-              </div>
-              <div class="basic-details">
-                <div class="profile-info">
-                  <ul>
-                    <li>
-                      <p>Document Type</p>
-                      <span>{{!getData.document_type ? 'N/A' : getData.document_type}}</span>
-                    </li>
-
-                    <li>
-                      <p>Document Number</p>
-                      <span>{{!getData.document_no ? 'N/A' : getData.document_no}}</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <div class="sprate-box gift-offer mt15">
           <div class="full-offer">
@@ -269,14 +242,15 @@
                     </li>
                     <li *ngIf="getData.receive_remark && getData.receive_status=='Received'">
                       <p>Receiving Date</p>
-                      <span>{{getData.received_date | date : 'dd MMM yyyy'}}</span>
+                      <span *ngIf="getData.received_date != '0000-00-00'">{{getData.received_date | date : 'dd MMM yyyy'}}</span>
+                      <span *ngIf="getData.received_date == 'N/A'">{{getData.received_date | date : 'dd MMM yyyy'}}</span>
                     </li>
                     <li *ngIf="getData.receive_remark && getData.receive_status=='Received'">
                       <p>Receiving Remark</p>
                       <span>{{getData.receive_remark}}</span>
                     </li>
                   </ul>
-                  <ul>
+                  <ul *ngIf="getData.discriptions">
                     <li>
                       <p>Discriptions</p>
                       <span [innerHTML]="discriptions"></span>
@@ -302,8 +276,72 @@
 
 
       </div>
-      <div class="col s6" *ngIf="getData.redeem_type == 'gift'">
-        <div class="sprate-box gift-offer " >
+      <div class="col s6" >
+        
+        
+        <div class="sprate-box gift-offer ">
+          <div class="full-offer">
+            <div class="top-heading">
+              <h2>DOCUMENT DETAIL</h2>
+            </div>
+            <div class="detail-info pl0 pr0">
+              <div class="img-box">
+                <img [src]="uploadUrl+getData.document_image" (click)="openDialog(getData.document_image,'document')">
+              </div>
+              <div class="basic-details">
+                <div class="profile-info">
+                  <ul>
+                    <li>
+                      <p>Document Type</p>
+                      <span>{{!getData.document_type ? 'N/A' : getData.document_type}}</span>
+                    </li>
+
+                    <li>
+                      <p>Document Number</p>
+                      <span>{{!getData.document_no ? 'N/A' : getData.document_no}}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sprate-box gift-offer mt15" *ngIf="getData.redeem_type == 'Cash'">
+          <div class="full-offer">
+              <div class="top-heading">
+                  <h2>BANK DETAIL</h2>
+              </div>
+              <div class="detail-info pl0 pr0">
+                  <div class="basic-details">
+                      <div class="profile-info">
+                          <ul>
+                              <li>
+                                  <p>Account Holder Name</p>
+                                  <span>{{getData.account_holder_name!='' ? getData.account_holder_name : 'N/A'}}</span>
+                              </li>
+                              <li>
+                                  <p>Bank Name</p>
+                                  <span>{{getData.bank_name!='' ? getData.bank_name : 'N/A'}}</span>
+                              </li>
+                              
+                              <li>
+                                  <p>Account Number</p>
+                                  <span>{{getData.account_no ? getData.account_no : 'N/A'}}</span>
+                              </li>
+
+                              <li>
+                                  <p>IFSC Code</p>
+                                  <span>{{getData.ifsc_code ? getData.ifsc_code : 'N/A'}}</span>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+        <div class="sprate-box gift-offer " *ngIf="getData.redeem_type == 'gift'" >
           <div class="full-offer">
             <div class="top-heading">
               <h2>OffER DETAIL</h2>
@@ -374,7 +412,7 @@
           </div>
         </div>
 
-        <div class="sprate-box gift-offer mt15">
+        <div class="sprate-box gift-offer mt15" *ngIf="getData.redeem_type == 'gift'">
           <div class="full-offer">
             <div class="top-heading">
               <h2>GIFT DETAIL</h2>
