@@ -6,6 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MastetDateFilterModelComponent } from 'src/app/mastet-date-filter-model/mastet-date-filter-model.component';
 import { SendmessageComponent } from 'src/app/master/karigar-data/sendmessage/sendmessage.component';
 import { SendNotificationComponent } from 'src/app/master/karigar-data/send-notification/send-notification.component';
+import { ChangeStatusComponent } from 'src/app/gift-gallery/change-status/change-status.component';
+import { ChangeKarigarStatusComponent } from '../change-karigar-status/change-karigar-status.component';
 
 
 @Component({
@@ -204,18 +206,35 @@ export class KarigarListComponent implements OnInit {
         });
     }
     
-    karigarsSatus(i)
+
+
+    karigarsSatus(id,status)
     {
-        this.dialog.statusAlert('karigar').then((result) => {
-            if(result) {
-            this.db.post_rqst({ 'status' : this.karigars[i].status, 'id' : this.karigars[i].id }, 'karigar/karigarStatus')
-            .subscribe(d => {
-                console.log(d);
-                this.getKarigarList('');
-            });
-        }
+        const dialogRef = this.alrt.open(ChangeKarigarStatusComponent,{
+            width: '500px',
+            // height:'500px',
+            
+            data: {
+                'id' : id,
+                'status' : status,
+                'target' : 1,
+            }
         });
     }
+
+
+    // karigarsSatus(i)
+    // {
+    //     this.dialog.statusAlert('karigar').then((result) => {
+    //         if(result) {
+    //         this.db.post_rqst({ 'status' : this.karigars[i].status, 'id' : this.karigars[i].id }, 'karigar/karigarStatus')
+    //         .subscribe(d => {
+    //             console.log(d);
+    //             this.getKarigarList('');
+    //         });
+    //     }
+    //     });
+    // }
     
     openDatepicker(): void {
         const dialogRef = this.alrt.open(MastetDateFilterModelComponent, {

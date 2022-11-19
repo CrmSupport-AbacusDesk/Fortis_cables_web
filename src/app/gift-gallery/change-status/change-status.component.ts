@@ -15,6 +15,7 @@ export class ChangeStatusComponent implements OnInit {
     mode:any;
     savingData = false;
     gift_id;
+    userData:any = {};
     offer:any = {};
     
     constructor(public db: DatabaseService, private route: ActivatedRoute, private router: Router,  public dialog: DialogComponent,
@@ -46,6 +47,22 @@ export class ChangeStatusComponent implements OnInit {
             });
         }
         
+
+
+        // statusUpdate(form:any)
+        // {
+        //     console.log(this.userData);
+        //     this.savingData = true;
+        //     this.db.post_rqst( { 'status' : this.userData.status, 'reason' : this.userData.reason ,'id': this.data.id }, 'karigar/karigarStatus')
+        //     .subscribe( d => {
+        //         this.savingData = false;
+        //         this.dialog.success( 'Status successfully Change');
+        //         this.dialogRef.close(true);
+        //         console.log( d );
+        //     });
+        // }
+
+
         onNoClick(): void{
             this.dialogRef.close();
         }

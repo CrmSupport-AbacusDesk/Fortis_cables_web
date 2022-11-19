@@ -32,11 +32,12 @@ export class ChangeKarigarStatusComponent implements OnInit {
     offer:any = {};
     addoffer(form:any)
     {
+
       this.savingData = true;
-      this.db.post_rqst( { 'status' : this.offer ,'id': this.data.id }, 'offer/redeemStatus')
+      this.db.post_rqst( { 'status' : this.offer.status,'reason' : this.offer.reason ,'id': this.data.id }, 'karigar/karigarStatus')
       .subscribe( d => {
         this.savingData = false;
-        this.router.navigate(['karigar-list']);
+        // this.router.navigate(['karigar-list']);
         this.dialogRef.close();
         this.dialog.success( 'Status successfully Change');
         console.log( d );

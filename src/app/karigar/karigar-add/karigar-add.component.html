@@ -51,7 +51,7 @@
                                 <div class="col s8 ">
                                     <div class="option-field">
                                         <div class="row mb0">
-                                            <div class="col s6" *ngIf="karigarform.country_id != 99">
+                                            <div class="col s4" *ngIf="karigarform.country_id != 99">
                                                 <div class="control-field">
                                                     <div>
                                                         <mat-form-field class="cs-input cs-multi-select">
@@ -62,7 +62,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col s6" *ngIf="karigarform.country_id == 99">
+                                            <div class="col s4" *ngIf="karigarform.country_id == 99">
                                                 <div class="control-field">
                                                     <div>
                                                         <mat-form-field class=" cs-input cs-multi-select">
@@ -74,7 +74,7 @@
                                                 </div>
                                             </div>
                                             
-                                            <div class="col s6 ">
+                                            <div class="col s4 ">
                                                 <div class="control-field">
                                                     <div *ngIf="karigarform.country_id != 99">
                                                         <mat-form-field class="cs-input cs-multi-select">
@@ -92,9 +92,7 @@
                                                     </div>  
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col s6">
+                                            <div class="col s4">
                                                 <div class="control-field">
                                                     <div>
                                                         <mat-form-field class="cs-input ">
@@ -103,11 +101,22 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s6">
+                                                <div class="control-field">
+                                                    <div>
+                                                        <mat-form-field class="cs-input ">
+                                                            <input matInput placeholder="Upi Id" name="upi_id" [(ngModel)] = "karigarform.upi_id" #upi_id = "ngModel" required>
+                                                        </mat-form-field>  
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="col s6" >
                                                 <div class="control-field">
                                                     <div>
                                                         <mat-form-field class=" cs-input ">
-                                                            <input matInput placeholder = "Pincode (Optional)" (keypress)="numeric_Number($event)" maxlength="6" minlength="6" name = "pincode"  [(ngModel)] = "karigarform.pincode" #pincode = "ngModel">
+                                                            <input matInput placeholder = "Pincode" (keypress)="numeric_Number($event)" maxlength="6" minlength="6" name = "pincode"  [(ngModel)] = "karigarform.pincode" #pincode = "ngModel" required>
                                                         </mat-form-field>
                                                     </div>
                                                 </div>
@@ -146,7 +155,7 @@
                                         <div class="control-field">
                                             <mat-form-field class="cs-input">
                                                 <mat-select placeholder="Document Type" [(ngModel)] = "karigarform.document_type" #document_type="ngModel" name="document_type">
-                                                    <mat-option value ="PanCard" >Pan Card</mat-option>
+                                                    <!-- <mat-option value ="PanCard" >Pan Card</mat-option> -->
                                                     <mat-option value ="VoterCard">Voter Card</mat-option>
                                                     <mat-option value ="Adharcard">Aadhaar Card</mat-option>
                                                 </mat-select>
@@ -155,22 +164,22 @@
                                     </div>
                                 </div>
                                 
-                                <div class="col s12" *ngIf="karigarform.document_type == 'PanCard'">
+                                <!-- <div class="col s12" *ngIf="karigarform.document_type == 'PanCard'">
                                     <div class="option-field">
                                         <div class="control-field">
                                             <mat-form-field class="cs-input">
-                                                <input matInput placeholder="Pan No." name="document_no" [(ngModel)] = "karigarform.document_no" #document_no="ngModel">
+                                                <input matInput placeholder="Pan No." name="document_no" [(ngModel)] = "karigarform.document_no" #document_no="ngModel" required>
                                             </mat-form-field>  
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 
                                 
                                 <div class="col s12"  *ngIf="karigarform.document_type == 'VoterCard'">
                                     <div class="option-field">
                                         <div class="control-field">
                                             <mat-form-field class="cs-input">
-                                                <input matInput placeholder="Voter No." name="document_no" [(ngModel)] = "karigarform.document_no" #document_no="ngModel" maxlength="15" minlength="10">
+                                                <input matInput placeholder="Voter No." name="document_no" [(ngModel)] = "karigarform.document_no" #document_no="ngModel" maxlength="15" minlength="10" required>
                                             </mat-form-field>  
                                         </div>
                                     </div>
@@ -180,8 +189,7 @@
                                     <div class="option-field">
                                         <div class="control-field">
                                             <mat-form-field class="cs-input">
-                                                <input matInput placeholder="Aadhaar" name="document_no" [(ngModel)] = "karigarform.document_no" #document_no="ngModel" (keypress)="numeric_Number($event)" maxlength="12" minlength="12"
-                                                >
+                                                <input matInput placeholder="Aadhaar" name="document_no" [(ngModel)] = "karigarform.document_no" #document_no="ngModel" (keypress)="numeric_Number($event)" maxlength="12" minlength="12" required>
                                             </mat-form-field>  
                                         </div>
                                     </div>
@@ -192,15 +200,21 @@
                                     <div class="cs-file">
                                         <p>Upload Image</p>
                                         <ul>
+
+
+
                                             <li>
                                                 <div class="cs-file file-up pl0">
                                                     <label>
                                                         <input type="file" (change)="onUploadChange($event)" style="display:none;" accept=".png, .jpg, .jpeg, .pdf"  />
-                                            <img  [src]="docId ? uploadUrl+karigarform.document_image : karigarform.document_image" alt="" id="img" *ngIf="karigarform.document_image != null">
+                                            <img  [src]="karigarform.id ? uploadUrl+karigarform.document_image : karigarform.document_image" alt="" id="img" *ngIf="karigarform.document_image != null">
                                                         <i class="material-icons add-file-icon" >add</i>
                                                     </label>
                                                 </div>
                                             </li>
+
+
+                                         
                                         </ul>
                                     </div>
                                 </div>
@@ -220,7 +234,7 @@
                                 <div class="col s12">
                                     <div class="control-field">
                                         <mat-form-field class="cs-input">
-                                            <input matInput placeholder="Counter Name" name="dealer_counter_name" [(ngModel)] = "karigarform.dealer_counter_name" #dealer_counter_name="ngModel" >
+                                            <input matInput placeholder="Counter Name" name="parent_counter_name" [(ngModel)] = "karigarform.parent_counter_name" #parent_counter_name="ngModel" >
                                         </mat-form-field>  
                                     </div>
                                 </div>
@@ -229,20 +243,76 @@
                                 <div class="col s6">
                                     <div class="control-field">
                                         <mat-form-field class="cs-input">
-                                            <input matInput placeholder="Contact Person" name="dealer_contact_person" [(ngModel)] = "karigarform.dealer_contact_person" #dealer_contact_person="ngModel" >
+                                            <input matInput placeholder="Contact Person" name="parent_counter_contact_person" [(ngModel)] = "karigarform.parent_counter_contact_person" #parent_counter_contact_person="ngModel" >
                                         </mat-form-field>  
                                     </div>
                                 </div>
                                 <div class="col s6">
                                     <div class="control-field">
                                         <mat-form-field class="cs-input">
-                                            <input matInput placeholder="Mobile No." name="dealer_mobile" [(ngModel)] = "karigarform.dealer_mobile" #dealer_mobile="ngModel"  maxlength="10" minlength="10" (keypress)="numeric_Number($event)" >
+                                            <input matInput placeholder="Mobile No." name="parent_counter_mobile" [(ngModel)] = "karigarform.parent_counter_mobile" #parent_counter_mobile="ngModel"  maxlength="10" minlength="10" (keypress)="numeric_Number($event)" >
                                         </mat-form-field>  
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
+
+                    <div class="col s4">
+                        <div class="sprate-box ">
+                            <div class="full-offer">
+                                <div class="top-heading">
+                                    <h2>Pancard DETAIL</h2>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="option-field">
+                                        <div class="control-field">
+                                            <mat-form-field class="cs-input">
+                                                <input matInput placeholder="Pan No." name="pan_no" [(ngModel)] = "karigarform.pan_no" #pan_no="ngModel" pattern="[A-z]{5}[0-9]{4}[A-z]{1}">
+                                            </mat-form-field>  
+    
+                                            <div *ngIf="pan_no.errors?.pattern" class="error">
+                                                <div>Invaild Pan Card Number</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb0">
+                                <div class="col s12">
+                                    <div class="cs-file">
+                                        <p>Upload Image</p>
+                                        <ul>
+                                            <li>
+                                                <div class="cs-file file-up">
+                                                    <label>
+                                                        <input type="file" (change)="onUploadPancard($event)" style="display:none;" accept=".png, .jpg, .jpeg, .pdf"  />
+                                                        <img  src="{{karigarform.id ? uploadUrl +karigarform.pan_image : karigarform.pan_image}}" alt="" id="img" *ngIf="karigarform.pan_image != null">
+                                                     
+                                                        <div class="fix-label">
+                                                            <i class="material-icons " >add</i>
+                                                           
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 
+    
+
+
+
+
                 </div>
                 <div class="save mt30" >
                     <button mat-button >SAVE</button>

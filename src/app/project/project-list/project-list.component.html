@@ -1,0 +1,229 @@
+<div class="main-container">
+  <div class="loader" *ngIf = "loading_list">
+    <div class="loding-logo">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+  <div class="fixed">
+    <div class="tab-header">
+      <div class="tabs-list gift-tab-list">
+        <h1>Projects</h1>
+        <!-- <ul>
+          <li (click)="filter = {};filter.status = 'All'; getProjectList('')" [ngClass]="{'active': filter.status == 'All'}" >
+            <a >
+              <p>All</p>
+              <span>{{ karigar_all }}</span>
+            </a>
+          </li>
+          <li (click)="filter = {};filter.status = 'Pending'; getProjectList('')" [ngClass]="{'active': filter.status == 'Pending'}">
+            <a>
+              <p>PENDING</p>
+              <span class="request-bg">{{ karigar_pending }}</span>
+            </a>
+          </li>
+          <li (click)="filter = {};filter.status = 'Verified'; getProjectList('')" [ngClass]="{'active': filter.status == 'Verified'}">
+            <a>
+              <p >VERIFIED</p>
+              <span class="approved-bg">{{ karigar_verified }}</span>
+            </a>
+          </li>
+          <li (click)="filter = {};filter.status = 'Reject'; getProjectList('')" [ngClass]="{'active': filter.status == 'Reject'}">
+            <a>
+              <p >REJECT</p>
+              <span class="reject-bg">{{ karigar_reject }}</span>
+            </a>
+          </li>
+          
+          <li (click)="filter = {};filter.status = 'Suspect'; getProjectList('')" [ngClass]="{'active': filter.status == 'Suspect'}">
+            <a>
+              <p >SUSPECT</p>
+              <span class="suspect-bg">{{ karigar_suspect }}</span>
+            </a>
+          </li>
+        </ul> -->
+        
+      </div>
+      
+      <div class="refresh-btn">
+        <a mat-button matTooltip="Refresh" matTooltipPosition="below" (click)="getProjectList('refresh');"><i class="material-icons">refresh</i></a>
+      </div>
+      
+      <div class="top-pagination">
+        <ul>
+          <li><p  >Pages {{ current_page }} of {{ last_page }}</p></li>
+          <li><button mat-button  matTooltip="First Page" class="fisrt-btn" (click) ='current1()'>First</button></li>
+          <li><button mat-button class="left-btn" (click) = 'redirect_previous()'><i class="material-icons">keyboard_arrow_left</i></button></li>
+          <li><input type="text" placeholder="GO TO" [(ngModel)]="current_page"  (keyup.enter)="getProjectList('')"></li>
+          <li><button mat-button class="right-btn" (click) = 'redirect_next()'><i class="material-icons">keyboard_arrow_right</i></button></li>
+          <li><button mat-button  matTooltip="Last Page" class="last-btn" (click) = 'last1()'>Last</button></li>
+        </ul>
+        
+      </div>
+    </div>
+    
+    <div class="css-table" >
+      <div class="sticky-header">
+        <div class="header">
+          <table>
+            <tr>
+              <th class="w30">Sr.no</th>
+              <th class="w120">Date Created</th>
+              <th class="w200">Carpenter Detail</th>
+              <th class="w200">Owner Detail</th>
+              <!-- <th class="w100">Mobile No.</th> -->
+              <th>Line 1</th>
+              <th>Line 2</th>
+              <th class="w130">State</th>
+              <th class="w130">District</th>
+              <th class="w130">City</th>
+              <th class="w80">Pincode</th>
+              <th class="w80">Site Image</th>
+
+              <!-- <th class="w90 text-center">Wallet Points</th>
+                <th class="w70 text-center">Requests</th>
+                <th class="w100 text-center">Status</th> -->
+              </tr>
+            </table>
+          </div>
+          
+          <div class="header border-bott">
+            <table>
+              <tr>
+                <th class="w30">&nbsp;</th>
+                <th class="w120">
+                  <div class="date-form">
+                    <i *ngIf="filter.date" class="material-icons"
+                        (click)="filter.date = '';getProjectList('') ">clear</i>
+
+                    <mat-form-field>
+                        <input placeholder="Date" [(ngModel)]="filter.date"
+                             name="date" matInput
+                            (dateChange)="getProjectList('')" [matDatepicker]="picker" readonly>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                </th>
+                <th class="w200">
+                  <div class="search-form">
+                    <input type="text" placeholder="Search..." [(ngModel)]="filter.first_name"  (keyup.enter)="current_page = 1;getProjectList('')">
+                    <i class="material-icons">search</i>
+                  </div>
+                </th>
+                <th class="w200">
+                  <div class="search-form">
+                    <input type="text" placeholder="Search..." [(ngModel)]="filter.project_head"  (keyup.enter)="current_page = 1;getProjectList('')">
+                    <i class="material-icons">search</i>
+                  </div>
+                </th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+                <th class="w130">
+                  <div class="search-form">
+                    <input type="text" placeholder="Search ..." [(ngModel)]="filter.state"  (keyup.enter)="current_page = 1;getProjectList('')">
+                    <i class="material-icons">search</i>
+                  </div>
+                </th>
+                <th class="w130">
+                  <div class="search-form">
+                    <input type="text" placeholder="Search..." [(ngModel)]="filter.district"  (keyup.enter)="current_page = 1;getProjectList('')">
+                    <i class="material-icons">search</i>
+                  </div>
+                </th>
+                <th class="w130">
+                  <div class="search-form">
+                    <input type="text" placeholder="Search..." [(ngModel)]="filter.city"  (keyup.enter)="current_page = 1;getProjectList('')">
+                    <i class="material-icons">search</i>
+                  </div>
+                </th>
+                <th class="w80">
+                  <div class="search-form">
+                    <input type="text" placeholder="Search..." [(ngModel)]="filter.pincode"  (keyup.enter)="current_page = 1;getProjectList('')">
+                    <i class="material-icons">search</i>
+                  </div>
+                </th>
+                <th class="w80"></th>
+                <!-- <th class="w90 text-center">Wallet Points</th>
+                  <th class="w70 text-center">Requests</th>
+                  <th class="w100 text-center">Status</th> -->
+                </tr>
+                
+                
+              
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>   
+      
+      
+      <div class="css-table" *ngIf="row_item.length">
+        <div class="table-container">
+          <div class="table-body">
+            <table>
+              <tr *ngFor="let val of row_item; let i = index">  
+                <td class="w30">{{ i + 1 + sr_no }}</td>    
+                <td class="w120">
+                  <ng-container *ngIf="val.date_created  != '0000-00-00 00:00:00' " > 
+                    {{val.date_created | date: 'dd MMM yyyy'}} 
+                  </ng-container>
+                  <!-- <ng-container *ngIf="val.created_by  == null " > 
+                    Self
+                  </ng-container>
+                  <ng-container *ngIf="val.created_by !==''">
+                    {{val.created_by}}
+                  </ng-container>  -->
+                </td>
+                <td class="w200">
+                  <a class="blue" routerLink="/karigar-detail/{{val.karigar_id}}/{{current_page}}">{{val.first_name }} - {{val.mobile_no}}</a></td>
+                <td class="w200">{{val.project_head}} - {{val.project_head_mobile}}</td>
+                <td>{{val.line_one_address}}</td>
+                <td>{{val.line_two_address}}</td>
+                <td class="w130">{{val.state}}</td>
+                <td class="w130">{{val.district}}</td>
+                <td class="w130">{{val.city}}</td>
+                <td class="w80">{{val.pincode}}
+<!--                   
+                  <div class="over-sec">
+                    <i class="material-icons deactive"  (click)="deleteKarigar(val.id)" >delete_sweep</i>
+                  </div>  -->
+                </td>
+                <td class="w80">
+                  <img src="{{uploadurl + val.site_image}}" *ngIf="val.site_image != ''" (click)="openDialog(val.site_image,'siteImage')">
+                </td>
+                <!-- <td class="w100">
+                  <div class="center">
+                    <select class="{{val.status}}"  [name]="'status'+i" placeholder="Status" [(ngModel)]="val.status" (change)="karigarsSatus(val.id, val.status) ">
+                      <option class="Verified" value="Verified">Verified</option>
+                      <option class="Reject" value="Reject">Reject</option>
+                      <option class="Pending" value="Pending">Pending</option>
+                      <option class="Suspect" value="Suspect">Suspect</option>
+                    </select> 
+                    
+                  </div>
+                </td> -->
+                
+                
+                
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container-outer" *ngIf="row_item.length == 0">
+        <div class="date-not">
+          <div class="no-img">
+            <img src="assets/result-not-found.png"> 
+          </div>
+        </div>
+       
+      </div>
+      
+      
+      <div class="fab-btns">
+        <button (click)="exportProject()" *ngIf="row_item.length" mat-fab class="excel">
+          <img src="assets/excel.svg">
+        </button>
+      </div>
+    </div>

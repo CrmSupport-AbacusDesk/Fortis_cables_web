@@ -24,7 +24,7 @@
             <div class="option-field" *ngIf="offer.gift_status == 'Reject'">
                 <div class="control-field">
                     <mat-form-field  class="cs-input">
-                        <textarea matInput placeholder="Description" class="h106" name="desc" [(ngModel)] = "offer.desc" #desc="ngModel" ></textarea>
+                        <textarea matInput placeholder="Reason" class="h106" name="desc" [(ngModel)] = "offer.desc" #desc="ngModel" ></textarea>
                     </mat-form-field>
                 </div>
             </div>
@@ -35,3 +35,55 @@
         </form>
     </div>
 </div>
+
+
+
+<!-- 
+
+<div class="gift-box" *ngIf="target == 1">
+    <div class="gift-heading">
+        <p>Change Status</p>
+        <div class="close-icon">
+            <button mat-button mat-dialog-close ><i class="material-icons">clear</i></button>
+        </div>
+    </div>
+    
+    <div class="trans pt15">
+        <form name="userData" (ngSubmit)="f.form.valid && statusUpdate(f) " #f="ngForm" novalidate autocomplete="off">
+            <div class="form-area">
+                <div class="slect none-bo mr0">
+                    <mat-form-field>
+                        <mat-label>Status</mat-label>
+                        <mat-select class="userData.status" placeholder="Status" [(ngModel)] = "userData.status" #status="ngModel" name="status" required>
+                            <mat-option class="Verified" value="Verified">Verified</mat-option>
+                            <mat-option class="Reject" value="Reject">Reject</mat-option>
+                            <mat-option class="Pending" value="Pending">Pending</mat-option>
+                            <mat-option class="Suspect" value="Suspect">Suspect</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            
+            <div class="option-field" *ngIf="userData.status == 'Verified' || userData.status == 'Pending'">
+                <div class="control-field">
+                    <mat-form-field  class="cs-input">
+                        <textarea matInput placeholder="Remarks" class="h106" name="reason" [(ngModel)] = "userData.reason" #reason="ngModel" ></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+          
+            <div class="option-field" *ngIf="userData.status == 'Reject' || userData.status == 'Suspect'">
+                <div class="control-field">
+                    <mat-form-field  class="cs-input">
+                        <textarea matInput placeholder="Remarks" class="h106" name="reason" [(ngModel)] = "userData.reason" #reason="ngModel" required></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+        
+            
+            <div class="save mt15" [ngClass]="{loading: savingData}">
+                <button mat-button class="mb0"  [disabled]="savingData" >SAVE</button>
+            </div>
+        </form>
+    </div>
+</div> -->

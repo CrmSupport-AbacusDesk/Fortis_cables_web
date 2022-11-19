@@ -110,6 +110,7 @@ import {GiftsComponent} from '../app/gifts/gifts.component';
 import { AddCouponCodesComponent } from './coupon-codes/add-coupon-codes/add-coupon-codes.component';
 import { MasterTabComponent } from './master/master-tab/master-tab.component';
 import { SubcategoryListComponent } from './master/subcategory-list/subcategory-list.component';
+import { ProjectListComponent } from './project/project-list/project-list.component';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme);
 
@@ -168,6 +169,7 @@ const routes: Routes = [
   {path: 'coupon-code-master', component:CouponCodeMasterComponent , canActivate: [AuthGuard]},
   {path: 'digitallist', component:DigitallistComponent , canActivate: [AuthGuard]},
   {path: 'add-coupon', component:AddCouponCodesComponent , canActivate: [AuthGuard] },
+  {path: 'project', component:ProjectListComponent , canActivate: [AuthGuard] },
   { path: '**', redirectTo: ''},
 ];
 
@@ -261,7 +263,8 @@ const routes: Routes = [
     AddCouponCodesComponent,
     MasterTabComponent,
     UploaddigitalcatComponent,
-    SubcategoryListComponent
+    SubcategoryListComponent,
+    ProjectListComponent,
   ],
   imports: [
     HttpClientModule,

@@ -6,13 +6,13 @@
       </div>
     </div>
     
-    <div class="trans">
+    <div class="trans" >
       <form name="offer" (ngSubmit)="f.form.valid && addoffer(f) " #f="ngForm" novalidate autocomplete="off">
-        <div class="form-area">
+        <div class="form-area" style="margin-top: 20px;">
           <div class="slect none-bo">
             <mat-form-field>
               <mat-label>Status</mat-label>
-              <mat-select class="offer.gift_status" placeholder="Status" [(ngModel)] = "offer.gift_status" #gift_status="ngModel" name="gift_status" required>
+              <mat-select class="offer.status" placeholder="Status" [(ngModel)] = "offer.status" #status="ngModel" name="status" required>
                   <mat-option value ="Pending" class="Pending">Pending</mat-option>
                   <mat-option value ="Reject" class="Reject">Reject</mat-option>
                   <mat-option value ="Approved" class="Approved">Approved</mat-option>
@@ -20,11 +20,11 @@
             </mat-form-field>
           </div>
         </div>
-        
-        <div class="option-field" *ngIf="offer.gift_status == 'Reject'">
+        <!-- *ngIf="offer.status == 'Reject'" -->
+        <div class="option-field" >
           <div class="control-field">
             <mat-form-field  class="cs-input">
-              <textarea matInput placeholder="Description" class="h106" name="desc" [(ngModel)] = "offer.desc" #desc="ngModel" ></textarea>
+              <textarea matInput placeholder="Remark" class="h106" name="reason" [(ngModel)] = "offer.reason" #reason="ngModel" required ></textarea>
             </mat-form-field>
           </div>
         </div>

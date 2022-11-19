@@ -11,7 +11,7 @@ import {MatPaginator, MatTableDataSource, MatDialog, MatDatepicker} from '@angul
   styleUrls: ['./dealer-add.component.scss']
 })
 export class DealerAddComponent implements OnInit {
-
+    docId:any;
   loading_list = false;
   karigarform: any = {};
   savingData = false;
@@ -21,14 +21,17 @@ export class DealerAddComponent implements OnInit {
   pincodes: any = [];
   karigar_id:any;
   date1:any;
+  uploadUrl:string='';
   
   
   constructor(public db: DatabaseService, private route: ActivatedRoute, private router: Router, public ses: SessionStorage,public matDialog: MatDialog,  public dialog: DialogComponent) { this.date1 = new Date();}
   
   ngOnInit() {
+    this.uploadUrl = this.db.uploadUrl;
       this.route.params.subscribe(params => {
+        this.docId = params['karigar_id'];
           this.karigar_id = params['dealer_id'];
-          
+         
           if (this.karigar_id)
           {
               this.getKarigarDetails();
@@ -60,6 +63,19 @@ export class DealerAddComponent implements OnInit {
       });
   }
   
+  onUploadPancard(evt: any) {
+    const file = evt.target.files[0];
+    console.log(file);
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = this.handleReaderLoaded1.bind(this);
+        reader.readAsBinaryString(file);
+    }
+}
+handleReaderLoaded1(e) {
+    this.karigarform.pan_image = 'data:image/png;base64,' + btoa(e.target.result) ;
+}
+
   type_list = [];
   get_karigar_type()
   {
@@ -70,6 +86,10 @@ export class DealerAddComponent implements OnInit {
       })
   }
   
+
+
+
+
   getStateList(){
       this.loading_list = true;
       this.db.get_rqst('', 'app_master/getStates')
@@ -180,15 +200,21 @@ export class DealerAddComponent implements OnInit {
   {
       this.karigarform.document_no=' ';
   }
+
   onUploadChange(evt: any) {
-      const file = evt.target.files[0];
-      console.log(file);
-      if (file) {
-          const reader = new FileReader();
-          reader.onload = this.handleReaderLoaded.bind(this);
-          reader.readAsBinaryString(file);
-      }
-  }
+    const file = evt.target.files[0];
+    console.log(file);
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = this.handleReaderLoaded.bind(this);
+        reader.readAsBinaryString(file);
+        this.docId = '';
+    }
+}
+
+
+
+
   handleReaderLoaded(e) {
       this.karigarform.document_image = 'data:image/png;base64,' + btoa(e.target.result) ;
       console.log( this.karigarform.document_image );

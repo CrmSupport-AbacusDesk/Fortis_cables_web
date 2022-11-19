@@ -49,6 +49,24 @@ export class KarigarAddComponent implements OnInit {
         picker.open();
     }
     
+
+
+    onUploadPancard(evt: any) {
+        const file = evt.target.files[0];
+        console.log(file);
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = this.handleReaderLoaded1.bind(this);
+            reader.readAsBinaryString(file);
+        }
+    }
+    handleReaderLoaded1(e) {
+        this.karigarform.pan_image = 'data:image/png;base64,' + btoa(e.target.result) ;
+    }
+    
+
+
+
     getData:any = {};
     getKarigarDetails() {
         this.loading_list = true;
@@ -193,6 +211,8 @@ export class KarigarAddComponent implements OnInit {
             this.docId = '';
         }
     }
+
+
     handleReaderLoaded(e) {
         this.karigarform.document_image = 'data:image/png;base64,' + btoa(e.target.result) ;
         console.log( this.karigarform.document_image );

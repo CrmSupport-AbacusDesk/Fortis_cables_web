@@ -189,7 +189,7 @@
                       <td class="w70 text-center"><span class="back-bg">{{val.redeem_request}}</span></td>
                       <td class="w100">
                           <div class="center">
-                              <select class="{{val.status}}"  [name]="'status'+i" placeholder="Status" [(ngModel)]="val.status" (change)="dealerStatus(i) ">
+                              <select class="{{val.status}}"  [name]="'status'+i" placeholder="Status" [(ngModel)]="val.status" (change)="dealerStatus(val.id, val.status) ">
                                   <option class="Verified" value="Verified">Verified</option>
                                   <option class="Reject" value="Reject">Reject</option>
                                   <option class="Pending" value="Pending">Pending</option>

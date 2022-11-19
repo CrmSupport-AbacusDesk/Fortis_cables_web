@@ -19,6 +19,8 @@
         
         myurl = 'https://devcrm.abacusdesk.com/fortiscable/dd_api/';
         uploadUrl = "https://devcrm.abacusdesk.com/fortiscable/dd_api/app/uploads/";
+
+        uploadUrl2 = "https://devcrm.abacusdesk.com/fortiscable/dd_api/app/uploads/site_images/";
         
         // local
         // myurl = 'http://localhost/advance_api/';
