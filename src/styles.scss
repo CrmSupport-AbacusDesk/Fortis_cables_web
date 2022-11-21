@@ -694,20 +694,20 @@ h1, h2, h3, h4, h5, h6
                 line-height: 16px;
                 font-size: 12px;
                 position: relative;
-                background: var(--black);
+                background: #004794;
                 color: var(--white);
                 border-radius: 0px;
                 transition: 0.5s;
                 
                 &:hover
                 {
-                    background: var(--primary);
+                    background: #ffda02;
                 }
             }
             
             &.active
             {
-                background: var(--primary);
+                background: #004794;
                 
                 
                 &:after
@@ -1734,7 +1734,7 @@ section::-webkit-scrollbar-track
 {
     button
     {
-        background: var(--primary);
+        background: #004794;
         display: flex;
         align-items: center;
         height: 28px;
@@ -2935,7 +2935,7 @@ table
 
 header
 {
-    background: var(--primary);
+    background: #004794;
     position: fixed;
     width: 100%;
     height: 100px;
@@ -3052,7 +3052,7 @@ header
                             
                             &.active, &:hover
                             {
-                                background: var(--white);
+                                background: #ffda02;
                                 color: var(--primary);
                             }
                         }
@@ -6195,7 +6195,7 @@ footer
     
     .add-btn
     {
-        background: var(--primary);
+        background: #004794;
         border: 1px solid var(--white);
         border-radius: 100% !important;
         display: flex;
@@ -6316,7 +6316,7 @@ button,a
             
             &.active
             {
-                background:var(--primary);
+                background: #004794;
                 position:relative;
                 
                 a
@@ -6334,6 +6334,7 @@ button,a
                     transform: translateY(-50%);
                     font-size: 30px;
                     right: -19px;
+                    color: #004794;
                 }
             }
             
@@ -6344,7 +6345,7 @@ button,a
             
             &:hover
             {
-                background: var(--primary);
+                background: #004794;
                 color: var(--white);
                 
                 a
@@ -8547,3 +8548,25 @@ mat-icon
 {
     .h#{$i} {height: 1% * $i }
 }
+
+
+
+
+
+
+i.arw_ic {
+    position: relative !important;
+    top: 34px !important;
+}
+
+.arw_main {
+    margin-bottom: -20px !important;
+}
+.arw_mns {
+    margin-bottom: -10px !important;
+}
+i.arw_icsr {
+    position: relative !important; 
+    top: 50px !important;
+}
+

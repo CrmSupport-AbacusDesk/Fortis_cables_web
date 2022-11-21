@@ -5,7 +5,7 @@
 
 
 $mat-primary: (
-500: #1a1a1a,
+500: #004794,
 contrast: (
 )
 );
@@ -35,7 +35,7 @@ $mytheme-theme: mat-light-theme($mytheme-primary, $mytheme-accent, $mytheme-warn
 
 
 :root {
-    --primary: #1a1a1a;
+    --primary: ##004794;
 	--primary-rgb: 26,26,26;
 	--primary-contrast: #ffffff;
 	--primary-contrast-rgb: 255,255,255;
@@ -106,7 +106,7 @@ $mytheme-theme: mat-light-theme($mytheme-primary, $mytheme-accent, $mytheme-warn
     --black-contrast: #ffffff;
     --black-contrast-rgb: 255,255,255;
     --black-shade: #000000;
-    --black-tint: #1a1a1a;
+    --black-tint: ##004794;
     
 }
 
