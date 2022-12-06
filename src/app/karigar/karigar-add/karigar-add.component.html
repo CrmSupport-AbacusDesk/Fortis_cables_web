@@ -273,7 +273,7 @@
                                     <div class="option-field">
                                         <div class="control-field">
                                             <mat-form-field class="cs-input">
-                                                <input matInput placeholder="Pan No." name="pan_no" [(ngModel)] = "karigarform.pan_no" #pan_no="ngModel" pattern="[A-z]{5}[0-9]{4}[A-z]{1}">
+                                                <input matInput placeholder="Pan No." name="pan_no" [(ngModel)] = "karigarform.pan_no" #pan_no="ngModel" pattern="[A-z]{5}[0-9]{4}[A-z]{1}" required>
                                             </mat-form-field>  
     
                                             <div *ngIf="pan_no.errors?.pattern" class="error">
